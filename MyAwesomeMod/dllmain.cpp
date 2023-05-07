@@ -32,14 +32,9 @@ public:
         ModDescription = STR("This is my awesome mod");
         ModAuthors = STR("UE4SS Team");
 
-        ImGui::SetCurrentContext(UE4SSProgram::get_current_imgui_context());
-        ImGuiMemAllocFunc alloc_func{};
-        ImGuiMemFreeFunc free_func{};
-        void* user_data{};
-        UE4SSProgram::get_current_imgui_allocator_functions(&alloc_func, &free_func, &user_data);
-        ImGui::SetAllocatorFunctions(alloc_func, free_func, user_data);
+        UE4SS_ENABLE_IMGUI()
 
-        m_test_tab = std::make_unique<MyTestTab>();
+        m_test_tab = std::make_shared<MyTestTab>();
         UE4SSProgram::get_program().add_gui_tab(m_test_tab);
     }
 
